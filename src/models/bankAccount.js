@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const bankAccounts = [];
 
 export function createBankAccount(user, basicInfo) {
   const bankAccount = {
-    id: bankAccounts.length + 1,
+    id: uuidv4(),
     agency: basicInfo.agency,
     number: basicInfo.number,
     balance: 0,
@@ -13,7 +15,7 @@ export function createBankAccount(user, basicInfo) {
 }
 
 export function withdraw(bankAccount, value) {
-  if (value > bankAccount.balance) {
+  if (value < bankAccount.balance) {
     bankAccount.balance -= value;
   } else {
     console.log('Saldo insuficiente');
