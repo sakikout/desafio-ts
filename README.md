@@ -5,6 +5,13 @@ Use esse espaço para responder às questões teóricas:
 ## Instruções
 Para executar o projeto, primeiro rode o comando: ```npm i``` para baixar as dependências do projeto.
 
+A função `uuidv4` serve apenas para gerar uma string que será usada como o id quando necessário.
+
+Para compilar e rodar o projeto você primeiro deve executar o comando `npx tsc` para transformar os arquivos `.ts` em `.js`.
+Depois disso, os arquivos compilados estarão na pasta `dist`. Para executar, basta executar o seguinte comando: `node ./dist/index.js`.
+
+Decerto algumas dúvidas irão surgir. Não se desespere, tome um ar, tente resolver com calma as questões, e, caso se veja sem saída, peça ajuda :).
+
 ## Questões teóricas
 
 - [ ] O que exatamente é o Typescript?
