@@ -5,7 +5,7 @@ import { User } from './user';
 const bankAccounts : Array<BankAccount> = [];
 
 // Interface para a conta bancária
-export interface BankAccount {
+interface BankAccountInterface {
   id: string;
   agency: string;
   number: string;
@@ -14,6 +14,11 @@ export interface BankAccount {
 
   // Método para exibir detalhes da conta bancária
   showDetails : () => void;
+  // Método para sacar dinheiro da conta bancária
+  withdraw : (value: number) => number;
+  // Método para depositar dinheiro na conta bancária
+  deposit : (value: number) => number;
+  
 }
 
 // Função para criar uma nova conta bancária
@@ -35,27 +40,48 @@ export function createBankAccount(user : User, basicInfo : { agency: string; num
     }
   };
 
-  bankAccounts.push(bankAccount);
+  constructor(agency: string, number: string, user: User) {
+    this.id = uuidv4();
+    this.agency = agency;
+    this.number = number;
+    this.balance = 0;
+    this.user = user;
 
-  return bankAccount;
-}
-
-// Função para tirar dinheiro da conta bancária
-export function withdraw(bankAccount : BankAccount, value : number) {
-  if (value < bankAccount.balance) {
-    bankAccount.balance -= value;
-  } else {
-    console.log('Saldo insuficiente');
   }
 
-  return bankAccount.balance;
+  // Método para exibir detalhes da conta bancária
+  showDetails() {
+    console.log(`Conta Bancária:
+      ID: ${this.id}
+      Agência: ${this.agency}
+      Número: ${this.number}
+      Saldo: ${this.balance}
+      Usuário: ${this.user.name}`);
+  }
+
+  // Método para tirar dinheiro da conta bancária
+  withdraw(value: number) {
+    if (value <= this.balance) {
+      this.balance -= value;
+    } else {
+      console.log('Saldo insuficiente');
+    }
+    return this.balance;
+  }
+
+  // Método para adicionar dinheiro na conta bancária
+  deposit(value: number) {
+    this.balance += value;
+    return this.balance;
+  }
+
 }
 
-// Função para depositar dinheiro na conta bancária
-export function deposit(bankAccount : BankAccount, value : number) {
-  bankAccount.balance += value;
-
-  return bankAccount.balance;
+// Função para adicionar uma nova conta bancária no array
+export function addBankAccount(bankAccount : BankAccount) {
+  bankAccounts.push(bankAccount);
+  console.log(`Conta bancária do usuário ${bankAccount.user.name} foi adicionada com sucesso!`);
+  return bankAccount;
 }
 
 // Função para obter informações da conta bancária no array dado a agência e número
