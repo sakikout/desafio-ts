@@ -61,4 +61,4 @@ Como deve ter notado, na pasta `src` temos uma pasta `model` e um arquivo `index
 - [x] Com os erros resolvidos, precisamos apenas testar o código e executar a função de `withdraw` e a função de `deposit` da `bankAccount`. Para isso, primeiro deposite a quantia de 1000 unidades monetárias (um) e faça um saque de 200um. Para verificar se deu tudo certo, use a função `getBankAccountInfo` e dê um `console.log` na conta obtida.
 
 ## Desafio extra
-- [ ] Refatore o projeto, mas usando classes para criar os `users` e as `bankAccounts`;
+- [x] Refatore o projeto, mas usando classes para criar os `users` e as `bankAccounts`. Obs.: Está na branch `develop`.
